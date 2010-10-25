@@ -45,8 +45,7 @@ void testApp::keyPressed(int key){
 
 void testApp::update() {
     // BeatDetectオブジェクトをupdateする
-    // この時点でビートが検出されたかどうかの
-    // 計算を行なっている
+    // この時点でビートが検出されたかどうかの計算を行なっている
     // 計算の結果はbd.isBeat()などの関数から得られる
     bd.updateFFT();
 }
