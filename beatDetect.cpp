@@ -45,10 +45,10 @@ beatDetect::beatDetect()
 		magnitude_average[i] = 0;
 	}
 
-    detectBeats = false;
     historyPos = 0; 
     fftInit = true;
     beatValue = 1.08;
+    enableBeatDetect();
     printf("beatDetect setup OK!! \n");
 }
 
@@ -73,7 +73,7 @@ void beatDetect::updateFFT()
             fftSmoothed[i] *= 0.90f;
         }
 
-        if(detectBeats) //初期化が済んでいれば真
+        if(bDetectBeat) //初期化が済んでいれば真
         {
             // サブバンドの計算
             // このソースではサブバンド数は32 -> 32回loop
@@ -182,16 +182,18 @@ bool beatDetect::isBeatRange(int low, int high, int threshold)
     return num > threshold;
 }
 
-void beatDetect::drawBeats()
-{
-    for (int i = 0; i < FFT_SUBBANDS; i++)
-    {
-        if(isBeat(i))
-        {
-            //ofSetColor(0,255,30);
-            ////ofRect(i*MAXX/FFT_SUBBANDS,MAXY-100,MAXX/FFT_SUBBANDS,-(fftSubbands[i] * 800));
-            //poet->getFont(10).drawString("X", i*MAXX/FFT_SUBBANDS,MAXY-120);
-        }
-    }
-}
+
+
+//void beatDetect::drawBeats()
+//{
+//    for (int i = 0; i < FFT_SUBBANDS; i++)
+//    {
+//        if(isBeat(i))
+//        {
+//            //ofSetColor(0,255,30);
+//            ////ofRect(i*MAXX/FFT_SUBBANDS,MAXY-100,MAXX/FFT_SUBBANDS,-(fftSubbands[i] * 800));
+//            //poet->getFont(10).drawString("X", i*MAXX/FFT_SUBBANDS,MAXY-120);
+//        }
+//    }
+//}
 
