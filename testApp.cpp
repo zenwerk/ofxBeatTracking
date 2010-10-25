@@ -2,7 +2,8 @@
 
 #include "beatDetect.h"
 
-int testApp_buffer_size = 1024, testApp_fft_size = 512;
+int testApp_buffer_size = 1024;
+int testApp_fft_size = 512;
 
 
 bool detect=true;
@@ -23,8 +24,7 @@ void testApp::setup(){
     printf("testApp setup() OK!\n");
 }
 
-void testApp::audioReceived(float* input, int bufferSize, int nChannels)
-{
+void testApp::audioReceived(float* input, int bufferSize, int nChannels) {
     bd.audioReceived(input, bufferSize);
 }
 
