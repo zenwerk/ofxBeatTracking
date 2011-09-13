@@ -12,7 +12,7 @@ beatDetect::beatDetect()
 {
     //int fft_size=512;
     //int buffer_size = 1024;
-    // 配列数は512 これを初期化　
+    // 配列数は512 これを初期化
     for(int i = 0; i < fft_size; i++)
         fftSmoothed[i] = 0;
 
@@ -36,7 +36,7 @@ beatDetect::beatDetect()
 	power = new float[fft_size];
 	magnitude_average = new float[fft_size]; //FFTの配列の平均
 	magnitude_average_snapshot = new float[fft_size];
-    // 宣言した配列を0で初期化
+
 	for (int i = 0; i < fft_size; i++) {
 		magnitude[i] = 0;
 		phase[i] = 0;
@@ -181,19 +181,3 @@ bool beatDetect::isBeatRange(int low, int high, int threshold)
             num++;
     return num > threshold;
 }
-
-
-
-//void beatDetect::drawBeats()
-//{
-//    for (int i = 0; i < FFT_SUBBANDS; i++)
-//    {
-//        if(isBeat(i))
-//        {
-//            //ofSetColor(0,255,30);
-//            ////ofRect(i*MAXX/FFT_SUBBANDS,MAXY-100,MAXX/FFT_SUBBANDS,-(fftSubbands[i] * 800));
-//            //poet->getFont(10).drawString("X", i*MAXX/FFT_SUBBANDS,MAXY-120);
-//        }
-//    }
-//}
-

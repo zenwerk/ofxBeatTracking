@@ -1,5 +1,4 @@
 #include "testApp.h"
-
 #include "beatDetect.h"
 
 int testApp_buffer_size = 1024;
@@ -53,7 +52,7 @@ void testApp::update() {
 void testApp::draw()
 {
     char str[32];
-	// 背景は黒
+	// 背景黒
 	//ofBackground(0, 0, 0);
 	
     // 取得したFFTの値は
@@ -67,7 +66,7 @@ void testApp::draw()
             ofSetColor(200,0,0);
         else
             ofSetColor(155,155,75);
-		ofLine(10+(i*3),150,       10+(i*3),150-bd.magnitude[i]*10.0f);
+		ofLine(10+(i*3),150,  10+(i*3),150-bd.magnitude[i]*10.0f);
         //printf("%f \n", magnitude_average[i]);
 	}
     // 画面に入りきらないので2列目
@@ -76,7 +75,7 @@ void testApp::draw()
             ofSetColor(200,0,0);
         else
             ofSetColor(155,155,75);
-		ofLine(10+(b*3),300,      10+(b*3),300-bd.magnitude[i]*10.0f);
+		ofLine(10+(b*3),300,  10+(b*3),300-bd.magnitude[i]*10.0f);
         b++;
         //printf("%f \n", magnitude_average[i]);
 	}
@@ -89,8 +88,7 @@ void testApp::draw()
             ofSetColor(200,0,0);
         else
             ofSetColor(134,113,89);
-		ofLine(10+(i*3),500,       10+(i*3),500-bd.magnitude_average[i]*10.0f);
-        //printf("%f \n", magnitude_average[i]);
+		ofLine(10+(i*3),500,  10+(i*3),500-bd.magnitude_average[i]*10.0f);
 	}
     // 画面に入り切らないので2列
     for (int i = (int)testApp_fft_size/2,b = 1; i<testApp_fft_size ; i++){
@@ -98,9 +96,8 @@ void testApp::draw()
             ofSetColor(200,0,0);
         else
             ofSetColor(134,113,89);
-		ofLine(10+(b*3),650,      10+(b*3),650-bd.magnitude_average[i]*10.0f);
+		ofLine(10+(b*3),650,  10+(b*3),650-bd.magnitude_average[i]*10.0f);
         b++;
-        //printf("%f \n", magnitude_average[i]);
 	}
 
     //ofSetColor(200,200,200);
@@ -116,7 +113,6 @@ void testApp::draw()
     if(drumVisible){
         if(bd.isBeatRange(0,2,2)){
             ofSetColor(255,0,0);
-            //ofRect(100,700,200,50);
             fbook.drawString("DRUM!!",100,735);
         }else{
             ofSetColor(0,255,0);
@@ -128,7 +124,6 @@ void testApp::draw()
     if(snareVisible){
         if(bd.isBeatRange(12,18,4)){
             ofSetColor(255,0,0);
-            //ofRect(350,700,200,50);
             fbook.drawString("SNARE!!", 350, 735);
         }else{
             ofSetColor(0,255,0);
@@ -140,7 +135,6 @@ void testApp::draw()
     if(hihatVisible){
         if(bd.isBeatRange(27,31,3)){
             ofSetColor(255,0,0);
-            //ofRect(600,700,200,50);
             fbook.drawString("HiHat!!", 600, 735);
         }else{
             ofSetColor(0,255,0);
