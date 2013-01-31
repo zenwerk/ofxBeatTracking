@@ -11,15 +11,14 @@ bool snareVisible = true;
 bool hihatVisible = true;
 
 void testApp::setup(){
-	// フレームレートを60Hzにセット
-	ofSetFrameRate(60);
-	
-	// オーディオインプットを指定 この値は固定すること
+    ofSetFrameRate(60);
+    
+    // オーディオインプットを指定 この値は固定すること
     // Output->0 Input->mono  sampleRate->44100  bufSize->1024
-	ofSoundStreamSetup(0, 1, this, 44100, testApp_buffer_size, 4);
+    ofSoundStreamSetup(0, 1, this, 44100, testApp_buffer_size, 4);
 
     fbook.loadFont("frabk.ttf", 32, true, false);
-	ofBackground(20,20,20);
+    ofBackground(20,20,20);
     printf("testApp setup() OK!\n");
 }
 
@@ -29,7 +28,7 @@ void testApp::audioReceived(float* input, int bufferSize, int nChannels) {
 
 
 void testApp::keyPressed(int key){
-	
+    
     // 真偽値を反転させて画面表示をコントロール
     if(key == 'd'){
         drumVisible = !drumVisible;
@@ -52,57 +51,58 @@ void testApp::update() {
 void testApp::draw()
 {
     char str[32];
-	// 背景黒
-	//ofBackground(0, 0, 0);
-	
-    // 取得したFFTの値は
-    // bd.magnitude[i] のようにすればアクセス可能
+    
+    // 取得したFFTの値は bd.magnitude[i] のようにすればアクセス可能
     // 以下では取得したFFTをbd.magnitude[i]の形式でアクセスしてFFTを描画する
 
     // 生のFFTの値を描画 (1列目)
     ofSetColor(155,155,75);
     for (int i = 1; i < (int)testApp_fft_size/2; i++){
-        if(i % 16 == 0)
+        if(i % 16 == 0) {
             ofSetColor(200,0,0);
-        else
+        } else {
             ofSetColor(155,155,75);
-		ofLine(10+(i*3),150,  10+(i*3),150-bd.magnitude[i]*10.0f);
+        }
+        ofLine(10+(i*3),150,  10+(i*3),150-bd.magnitude[i]*10.0f);
         //printf("%f \n", magnitude_average[i]);
-	}
+    }
     // 画面に入りきらないので2列目
     for (int i = (int)testApp_fft_size/2,b = 1; i<testApp_fft_size ; i++){
-        if(i % 16 == 0)
+        if(i % 16 == 0) {
             ofSetColor(200,0,0);
-        else
+        } else {
             ofSetColor(155,155,75);
-		ofLine(10+(b*3),300,  10+(b*3),300-bd.magnitude[i]*10.0f);
+        }
+        ofLine(10+(b*3),300,  10+(b*3),300-bd.magnitude[i]*10.0f);
         b++;
         //printf("%f \n", magnitude_average[i]);
-	}
+    }
 
 
     // 平均化されたFFTの値を描画 (1列目)
     ofSetColor(134,113,89);
-	for (int i = 1; i < (int)testApp_fft_size/2; i++){
-        if(i % 16 == 0)
+    for (int i = 1; i < (int)testApp_fft_size/2; i++){
+        if(i % 16 == 0) {
             ofSetColor(200,0,0);
-        else
+        } else {
             ofSetColor(134,113,89);
-		ofLine(10+(i*3),500,  10+(i*3),500-bd.magnitude_average[i]*10.0f);
-	}
+        }
+        ofLine(10+(i*3),500,  10+(i*3),500-bd.magnitude_average[i]*10.0f);
+    }
     // 画面に入り切らないので2列
     for (int i = (int)testApp_fft_size/2,b = 1; i<testApp_fft_size ; i++){
-        if(i % 16 == 0)
+        if(i % 16 == 0) {
             ofSetColor(200,0,0);
-        else
+        } else {
             ofSetColor(134,113,89);
-		ofLine(10+(b*3),650,  10+(b*3),650-bd.magnitude_average[i]*10.0f);
+        }
+        ofLine(10+(b*3),650,  10+(b*3),650-bd.magnitude_average[i]*10.0f);
         b++;
-	}
+    }
 
     //ofSetColor(200,200,200);
-	//for (int i = 1; i < (int)testApp_fft_size/2; i++){
-	//	//ofLine(200+(i*4),200,200+(i*4),400-magnitude[i]*10.0f);
+    //for (int i = 1; i < (int)testApp_fft_size/2; i++){
+    //    //ofLine(200+(i*4),200,200+(i*4),400-magnitude[i]*10.0f);
     //    //ofLine(10+(i*5.3),400,  10+(i*5.3),400-magnitude[i]*10.0f);
     //    sprintf(str, "%.0f", magnitude[i]);
     //    fbook.drawString(str,5+(i*7), 270);
